@@ -1,0 +1,59 @@
+Steps to Set Up a CI/CD Pipeline
+Here’s a step-by-step guide to set up a CI/CD pipeline using AWS services:
+
+Step 1: Create a CodeCommit Repository
+Sign in to the AWS Management Console.
+Navigate to the CodeCommit console.
+Create a new repository and clone it to your local machine.
+Push your source code to the CodeCommit repository.
+Step 2: Set Up CodeBuild
+Create a build project in the CodeBuild console.
+
+Configure the build project:
+
+Source: Choose your CodeCommit repository.
+Environment: Select the runtime environment, operating system, and the build specifications (e.g., runtime versions, build commands).
+Define a buildspec.yml file in your source code repository to specify the build commands.
+
+
+Set Up CodePipeline
+Create a pipeline in the CodePipeline console.
+Configure the pipeline settings:
+Source: Choose your CodeCommit repository.
+Build: Select the CodeBuild project.
+Deploy: Choose the CodeDeploy application and deployment group.
+Review and create the pipeline. This will trigger an initial run of the pipeline.
+Step 5: Automate and Monitor
+Push code changes to your CodeCommit repository to trigger the pipeline.
+Monitor the pipeline in the CodePipeline console to view the progress and status of each stage.
+Set up notifications using Amazon CloudWatch and SNS to get alerts on pipeline events and failures.
+Example Pipeline Workflow
+CodeCommit: Push code changes to the repository.
+CodePipeline: Detects changes and starts the pipeline.
+CodeBuild: Compiles the code, runs tests, and generates build artifacts.
+CodeDeploy: Deploys the build artifacts to the specified environment.
+Monitor and Notify: Monitor the deployment and set up notifications for success or failure.
+
+
+
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+  pre_build:
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm run build
+artifacts:
+  files:
+    - '**/*'
+
+
+
+
+
