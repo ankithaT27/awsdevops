@@ -1,0 +1,6 @@
+CICD:
+
+Create a source code repo: git, codecommit
+configure a codedeploy to deploy to the required env-> ec2, lamda
+install code deploy agent on ec2 instance
+configre roles as becessary
